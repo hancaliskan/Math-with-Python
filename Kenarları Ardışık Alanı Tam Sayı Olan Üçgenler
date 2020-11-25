@@ -1,0 +1,58 @@
+#Kenarları ardışık tam sayı olan üçgenlerin pek azının alanı da tam sayıdır. 
+#Az olmasına azlar ama sonsuz sayıdadırlar. 
+#Bunların ilk ikisi (3, 4, 5) ve (13, 14, 15) üçgenleridir. 
+
+def ucgen_olabilirmi(a,b,c):
+    sart1 = (a > abs(b-c)) and (a<b+c)
+    sart2 = (b > abs(a-c)) and (b<a+c)
+    sart3 = (c > abs(a-b)) and (c<a+b)
+    return sart1 and sart2 and sart3
+
+def alani_tamsayimi(a,b,c):
+    u = (a + b + c) / 2
+    alan = (u * (u - a) * (u - b) * (u - c)) ** 0.5
+    if alan== alan//1: #Tam sayı şartı
+        print("Alanı : ",alan)
+        return True
+    return False
+
+if __name__ == '__main__':
+    sayac,x,y,z=0,1,2,3
+    while sayac<9:
+        if ucgen_olabilirmi(x,y,z) and alani_tamsayimi(x,y,z):
+            print("Üçgen kenar uzunlukları : ", x, y, z)
+            print("-------------------------------------")
+            sayac+=1
+        x+=1 ; y+=1 ; z+=1
+        
+"""
+OUTPUT:
+
+Alanı :  6.0
+Üçgen kenar uzunlukları :  3 4 5
+-------------------------------------
+Alanı :  84.0
+Üçgen kenar uzunlukları :  13 14 15
+-------------------------------------
+Alanı :  1170.0
+Üçgen kenar uzunlukları :  51 52 53
+-------------------------------------
+Alanı :  16296.0
+Üçgen kenar uzunlukları :  193 194 195
+-------------------------------------
+Alanı :  226974.0
+Üçgen kenar uzunlukları :  723 724 725
+-------------------------------------
+Alanı :  3161340.0
+Üçgen kenar uzunlukları :  2701 2702 2703
+-------------------------------------
+Alanı :  44031786.0
+Üçgen kenar uzunlukları :  10083 10084 10085
+-------------------------------------
+Alanı :  613283664.0
+Üçgen kenar uzunlukları :  37633 37634 37635
+-------------------------------------
+Alanı :  8541939510.0
+Üçgen kenar uzunlukları :  140451 140452 140453
+-------------------------------------
+"""
